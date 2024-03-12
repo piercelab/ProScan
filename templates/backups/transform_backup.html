@@ -1,0 +1,17 @@
+<html>
+   <head>
+      <title>success</title>
+   </head>
+   <body>
+      <p>File uploaded successfully</p>
+      <p>File Name: {{name}}</p>
+      <p>Type: {{subType}}</p>
+      <form action="/download" method = "post">
+      <button type=submit>Download Results</button>
+      </form>
+      <BR><BR>
+      <a href="{{ url_for('displayFile') }}" target="_blank">Display Contents</a>
+      <BR><BR>
+      <a href="{{ url_for('goHome') }}">Submit_New</a>
+   </body>
+</html>

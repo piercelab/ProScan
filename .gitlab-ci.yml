@@ -1,0 +1,76 @@
+variables:
+  WEBDIR: /www/ProScan
+  CRONTAB: /etc/cron.d/$CI_PROJECT_NAME
+
+stages:
+  - env
+  - deploy
+  - permissions
+
+workflow:
+  rules:
+    # Never run pipeline in a deploy freeze window
+    - if: $CI_DEPLOY_FREEZE != null
+      when: never
+    # Only run on commit pipelines
+    - if: $CI_COMMIT_BRANCH
+      when: always
+
+Install requirements:
+  stage: .pre
+  script:
+    - "which git || dnf -y install git"
+    - "which git-lfs || dnf -y install git-lfs"
+
+Install Conda Packages:
+  stage: env
+  rules:
+    - changes:
+        - environment.yml
+  script:
+    - "which conda || source /www/cgi-bin/miniconda3/etc/profile.d/conda.sh"
+    - "which mamba || conda install -c conda-forge -y mamba"
+    - "mamba env update -f $CI_PROJECT_DIR/environment.yml"
+    - "restorecon -r /www/cgi-bin/miniconda3"
+    - "/www/cgi-bin/miniconda3/envs/wsgi/bin/mod_wsgi-express module-config >  /etc/httpd/conf.modules.d/10-wsgi.conf"
+
+Copy Crontab:
+  stage: env
+  rules:
+    - changes:
+        - crontab
+  script:
+    - "/usr/bin/cp $CI_PROJECT_DIR/crontab $CRONTAB"
+
+Deploy:
+  stage: deploy
+  script:
+    - "[[ -d $WEBDIR ]] || git clone $CI_REPOSITORY_URL $WEBDIR"
+    - "cd $WEBDIR"
+    - "git pull"
+
+Fix Rundir Owner:
+  stage: permissions
+  rules:
+    - exists:
+        - runs
+  script:
+    - "chown -R apache $WEBDIR/runs"
+
+Fix SELinux Contexts:
+  stage: permissions
+  script:
+    - "restorecon -r $WEBDIR"
+
+Fix File Permissions:
+  stage: permissions
+  rules:
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+  script:
+    - "chgrp -R 'pierce group' $WEBDIR"
+    - "chmod -R g=u $WEBDIR"
+
+Restart Apache:
+  stage: .post
+  script:
+    - "systemctl reload httpd"

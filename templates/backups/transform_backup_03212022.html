@@ -1,0 +1,36 @@
+<html>
+   <head>
+      <title>success</title>
+   </head>
+   <body>
+      <p>File uploaded successfully</p>
+      <p>File Name: {{name}}</p>
+      <form action="/download" method="post">
+      <button type=submit>Download Results</button>
+      </form>
+      <BR><BR>
+      
+      
+      <input type="button" name="ShowResults" value="Display_Results" onclick="showPanel()">
+      <input type="button" name="ShowResults" value="Hide" onclick="hidePanel()">
+      <iframe src="/displayResults" height="400" name="testTable" id="ResultsTab" width="600" style="border:none;"></iframe>
+      <div id="TestDiv"> Testing </div>
+      
+      <script type="text/javascript">
+      document.getElementById("ResultsTab").style.display = "none"; //hides the frame
+      document.getElementById("TestDiv").style.display = "none"; //hides the frame
+      function showPanel() {
+    	document.getElementById('ResultsTab').style.display = "block";
+    	document.getElementById("TestDiv").style.display = "block"; //hides the frame
+  	}
+      function hidePanel() {
+    	document.getElementById("ResultsTab").style.display = "none";
+    	document.getElementById("TestDiv").style.display = "none"; //hides the frame 
+  	}
+      </script>       
+     
+      <BR><BR>
+      <a href="{{ url_for('goHome') }}">Submit_New</a>
+      
+   </body>
+</html>

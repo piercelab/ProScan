@@ -1,0 +1,21 @@
+HBPLUS Hydrogen Bond Calculator v 3.2            Mar 12 12:55:08 EDT 2024
+(c) I McDonald, D Naylor, D Jones and J Thornton 1993 All Rights Reserved.
+Citing HBPLUS in publications that use these results is condition of use.
+     <- Brookhaven Code "/www/ProScan/runs/4z0x.cif_CUD_240312_125507/4z0x.pdb" <- PDB file
+<---DONOR---> <-ACCEPTOR-->    atom                        ^               
+c    i                          cat <-CA-CA->   ^        H-A-AA   ^      H- 
+h    n   atom  resd res      DA  || num        DHA   H-A  angle D-A-AA Bond
+n    s   type  num  typ     dist DA aas  dist angle  dist       angle   num
+C0439-ALA N   C0435-THR O   3.32 MM   4  5.20 167.2  2.34 131.5 130.1     1
+C0440-GLY N   C0436-GLY O   3.32 MM   4  6.48 151.0  2.41 134.7 142.9     2
+C0440-GLY N   C0437-TRP O   2.91 MM   3  4.69 110.7  2.40  93.3 111.4     3
+C0441-LEU N   C0437-TRP O   3.04 MM   4  6.40 127.9  2.32 149.8 162.9     4
+C0441-LEU N   C0438-LEU O   2.99 MM   3  5.39 145.7  2.11 109.7 119.3     5
+C0442-PHE N   C0439-ALA O   3.02 MM   3  5.39 128.2  2.30 108.9 120.6     6
+C0443-TYR N   C0439-ALA O   2.96 MM   4  6.16 168.3  1.97 160.7 164.3     7
+C0501-HOH O   C0442-PHE O   2.56 HM  -2 -1.00  -1.0 -1.00  -1.0 131.4     8
+C0503-HOH O   C0443-TYR O   2.63 HM  -2 -1.00  -1.0 -1.00  -1.0 136.9     9
+C0504-HOH O   C0444-GLN O   2.82 HM  -2 -1.00  -1.0 -1.00  -1.0 133.7    10
+C0505-HOH O   C0445-HIS O   3.27 HM  -2 -1.00  -1.0 -1.00  -1.0 121.1    11
+C0505-HOH O   C0446-LYS O   2.90 HM  -2 -1.00  -1.0 -1.00  -1.0  96.7    12
+C0446-LYS NZ  C0502-HOH O   2.61 SH  -2 -1.00 117.2  1.98  -1.0  -1.0    13

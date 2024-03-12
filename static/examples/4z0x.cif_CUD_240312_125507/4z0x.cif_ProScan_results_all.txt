@@ -1,0 +1,13 @@
+Residue	ID	Chain	Phi	Psi	Sec_Struct	ProteinMPNN_Prob	Pro_Angle	Pre-Pro_Angle	DDG_Pred	Notes
+THR	435	C	0.0	0.0	No_Sec	0.0205	No_Angle	No_Angle	0.1	-
+GLY	436	C	77.615	-166.305	A_Helix	0.0032	Questionable	No_Angle	12.8	-
+TRP	437	C	-72.061	-32.674	A_Helix	0.0141	Preferable	Questionable	0.1	-
+LEU	438	C	-47.957	-58.172	A_Helix	0.0068	Preferable	Preferable	0.0	-
+ALA	439	C	-60.082	-34.559	A_Helix	0.0038	Preferable	Preferable	3.2	H-bond_C0435
+GLY	440	C	-64.829	-18.146	A_Helix	0.0035	Preferable	Preferable	2.5	H-bond_C0436 H-bond_C0437
+LEU	441	C	-67.273	-41.714	A_Helix	0.004	Preferable	Acceptable	8.4	H-bond_C0437 H-bond_C0438
+PHE	442	C	-81.694	-39.346	A_Helix	0.0033	Acceptable	Preferable	0.4	H-bond_C0439
+TYR	443	C	-156.762	145.016	No_Sec	0.003	Questionable	Acceptable	3.0	H-bond_C0439
+GLN	444	C	-108.53	129.355	No_Sec	0.0036	Questionable	Preferable	1.8	-
+HIS	445	C	-66.417	147.011	No_Sec	0.6905	Preferable	Preferable	-1.0	-
+LYS	446	C	0.0	0.0	No_Sec	0.1105	No_Angle	No_Angle	0.8	-

@@ -1,0 +1,176 @@
+<html>
+  <head>
+    <title> ProScan Help</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+  </head>
+   
+  <body>
+    
+      <div class="main_header">
+        <div id="header_title">
+          <a class="title" href=/>ProScan</a>
+          <a id="subtitle" href=/>Structure-Based Proline Design Tool</a>
+        </div>
+        <div class="options_header">     
+          <ul>
+            <li class="thlist"><a href=/>Home</a></li>
+            <li class="thlist"><a href="{{ url_for('about') }}">About</a></li>
+            <li class="thlist"><a href="{{ url_for('help') }}">Help</a></li>
+            <li class="thlist"><a href="https://piercelab.ibbr.umd.edu">Lab Home</a></li>
+	        </ul>   
+	      </div>
+	    </div>
+    <div id='main_container'>
+      <div id='help_info_container'>
+        <div id='help_info1'>
+          <div id='help_info1a' class="info_tab1">
+            <div class=help_text id="text_1a">
+              <h3 class='help_info_header'><strong>Submission and Input</strong></h3> 
+              <p> <b>(Input Options)</b> The user can input their data either by uploading a structure file in 
+                  either .pdb or .cif format, or by providing an RCSB ID number in the 
+                  first input form. Specific chains may be selected or ignored
+                  by entering them in the second input form as a comma separated list (case sensitive). If 
+                  invalid chains are entered the chain selection criteria will be ignored.  
+                </p>
+            </div>
+            <div class="help_image_container" id="help_info1a_image_container">
+              <img class='help_image' id="input_help" src="{{url_for('static', filename='/image/ProScan_Input_Help_New.png')}}"/>
+            </div>
+          </div>
+          <div id='help_info1b' class="info_tab1">
+            <div class=help_text id="text_1b">
+              <h3 class='help_info_header'><strong>Output Page Navigation</strong></h3>
+              <p><b>(Download Options)</b> After a run is successfully completed the user has the option to
+              download the output for all residues (Download Full Results) or download the output 
+              for only the top scoring proline candidates (Download Highest Scoring Results). 
+              </p>
+              <br>
+              <p><b>(Ramachandran Diagrams and Model Viewer)</b> Beneath the download options a Ramachandran diagram displaying phi/psi coordinates
+                of all residues and a 3d model of the input structure are displayed. The user can filter the output for a target residue by entering
+                its chain name and ID into the input field in the top left corner. For example, inputting C445 will filter the output to residue 445 
+                of chain C. <br><br>The Ramachandran Plot, 3d model, and rows of the results table use the following color scheme:
+                <ul style="line-height:1.7;">
+                  <li>Red: Residues with preferable Ramachandran backbone angle for proline and a ProteinMPNN proline probability greater than or equal to 0.2</li>
+                  <li>Yellow: Residues with acceptable Ramachandran backbone angle for proline and ProteinMPNN proline probability between 0.1 and 0.2</li>
+                  <li>Grey/Uncolored: Residues that have either poor Ramachandran backbone angles or ProteinMPNN probability below 0.1</li> 
+                  <li>Dark Blue: Wild-type proline residues</li>
+                </ul>          
+              </p>
+              <br>
+              <p><b>(Results Table)</b> Below the Ramachandran Plot and 3d model, results of the scan are shown in the form of an interactive 
+                table. By default the predictions for all residues are displayed, but best proline substitution candidates can be
+                displayed on their own by clicking the Display Top button.                 
+            </p>
+            </div>
+            <div class="help_image_container" id="help_info1b_image_container">
+              <img class='help_image' id="output_help_1" src="{{url_for('static', filename='/image/ProScan_Output_Help_1.png')}}"/>
+              <img class='help_image' id="results_table_help_image" src="{{url_for('static', filename='/image/ProScan_Results_Table_Help.png')}}"/>
+            </div>
+          </div>
+          <div id='help_info1c' class="info_tab1">
+            <div class=help_text id="text_1c">
+              <h3 class='help_info_header'><strong>Ramachandran Diagrams and Model Viewer</strong></h3>
+              <p><b>(Ramachandran Diagrams)</b> To aid in Backbone analysis, ProScan outputs a Ramachandran
+              diagram that displays the Phi/Psi coordinates for all residues. Hovering over individual residue data points will 
+              display the wild-type residue type, residue number, and ProteinMPNN score for the respective residue. The user 
+              has the option to hide wild-type proline residues or poor candidate residues via the right drop-down menu above the diagram.
+              <br><br>
+              The diagram includes a density
+              plot representing the acceptable angles for proline or pre-proline residues based on published phi/psi angle distributions
+              of existing high-resolution protein structures <a style="text-decoration:none;" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/prot.10286">(Lovell et al. 2003).</a> The user can switch between the proline contour plot (default) or pre-proline contour plots via the drop-down button in the left
+              drop-down menu above the diagram. The Pro_Angle and Pre-Pro_Angle criteria is based on the boundaries of this density plot and are defined by the following:
+              <ul style="line-height:1.7;">
+                <li> Residues with backbone angles that fall within 98% of data (darker boundaries) are classified as "Preferable"</li>
+                <li> Residues with backbone angles that fall within 99.95% of data (lighter boundaries) are classified as "Acceptable"</li>
+                <li> Residues with backbone angles outside either boundary are classified as "Questionable"</li> 
+              </ul>   
+              </p>
+              <br>
+              <p><b>(3d Model Viewer)</b> A 3d model of input structure is displayed to the right of the Ramachandran Plot. 
+              Controls for viewing the model follow the <a href="https://nglviewer.org/ngl/api/manual/interaction-controls.html">default nglviewer control scheme</a>.
+              Residues are colored according to the scheme described in Output Page Navigation. Aditionally, all the atoms of the best and acceptable substitution candidates 
+              are displayed with a ball-and-stick representation.
+              </p>
+            </div> 
+            <div class="help_image_container" id="help_info1c_image_container">
+              <img class='help_image' id="rama_help_image" src="{{url_for('static', filename='/image/ProScan_Rama_Help.png')}}"/>
+              <img class='help_image' id="viewer_help_image" src="{{url_for('static', filename='/image/ProScan_Viewer_Help.png')}}"/>
+            </div>
+          </div>
+          <div id='help_info1d' class="info_tab1">
+            <div class='help_text' id="text_1d">
+              <h3 class='help_info_header'><strong>Results Table Interpretation</strong></h3>
+              <p><b>(Results Table Layout)</b> Both the downloaded results table and table displayed on the results page follow 
+              the same format:
+              <table id="results_info_table">
+                <tr>
+                  <th>Column</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td>Residue</td>
+                  <td>Identity of wild-type residue</td>
+                </tr>
+                <tr>
+                  <td>ID</td>
+                  <td>ID number of residue as defined by input</td>
+                </tr>
+                <tr>
+                  <td>Chain</td>
+                  <td>Chain of residue as defined by input</td>
+                </tr>
+                <tr>
+                  <td>Phi</td>
+                  <td>Phi angle of residue</td>
+                </tr>
+                <tr>
+                  <td>Psi</td>
+                  <td>Psi angle of residue</td>
+                </tr>
+                <tr>
+                  <td>Sec Struct</td>
+                  <td>Predicted secondary structure</td>
+                </tr>
+                <tr>
+                  <td>ProteinMPNN Probability</td>
+                  <td>Probability of residue being a proline according to ProteinMPNN output</td>
+                </tr>
+                <tr>
+                  <td>Pro Angle</td>
+                  <td>Ramachandran Plot classification according to where backbone angle falls in Lovell et al. proline angle distribution</td>
+                </tr>
+                <tr>
+                  <td>Pre-Pro Angle</td>
+                  <td>Ramachandran Plot classification according to where backbone angle of previous residue falls in Lovell et al. pre-pro angle distribution</td>
+                </tr>
+                <tr>
+                  <td>Notes</td>
+                  <td>Extra information pertaining to substitution such as disruption of hydrogen bonding (h-bonds located in the side chain or h-bonds where the donor is the main-chain nitrogen atom),
+                    disruption of a disulfide bond, or interruption of glycan binding (if input explicitly defines which residue glycan is bound to)
+                  </td>
+                </tr>
+              </table>
+            </p>
+            <br>
+            <p><b>(Results Table Control Options)</b> The table found in the final results page can be manipulated by the user. Columns can be sorted alphabetically or numerically by clicking on the column headers. 
+              Clicking the header three times will restore the column to its original order. The user also has the option to search for specific values in each column by using the input form below the header of column. 
+              For example, to display only glycine residues enter "GLY" below the residue header. It is also possible to apply other filters using logical expression syntax. For example to exclude prolines enter "!PRO" below the Residue column header.
+            </p>
+            </div>
+            <div class="help_image_container" id="help_info1d_image_container">             
+              <img class='help_image' id="results_table_help_image" src="{{url_for('static', filename='/image/ProScan_Results_Table_Help.png')}}"/>
+            </div>
+          </div> 
+        </div> 
+      </div>
+      <div id="main_footer">
+        <a style="text-decoration:none;" href="http://www.ibbr.umd.edu">
+          <img style="width:250px" class='footer_image' src="{{url_for('static', filename='/image/ibbr_logo.png')}}" />
+        </a>
+        <a style="text-decoration:none;" href="http://www.umd.edu">
+          <img style="width:220px" class='footer_image' src="{{url_for('static', filename='/image/UMD_Logo-white.png')}}" />
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

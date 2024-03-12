@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <title>success</title>
+         
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>        
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.widgets.min.js"></script>
+    
+    <script src='https://cdn.rawgit.com/arose/ngl/v2.0.0-dev.32/dist/ngl.js'></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>   
+     <link rel="stylesheet" href="../static/tablesorter/dist/css/theme.default.min.css">
+     <link rel="stylesheet" href="../static/css/main.css">  
+    
+   </head>
+   
+  <body>
+    <div class="main_header">
+      <div id="header_title">
+        <a class="title" href=/>ProScan</a>
+        <a id="subtitle" href=/>Structure-Based Proline Design Tool</a>
+      </div>
+    <div class="options_header">     
+        <ul>
+          <li class="thlist"><a href=/>Home</a></li>
+          <li class="thlist"><a href="{{ url_for('about') }}">About</a></li>
+          <li class="thlist"><a href="{{ url_for('help') }}">Help</a></li>
+          <li class="thlist"><a href="https://piercelab.ibbr.umd.edu">Lab Home</a></li>
+        </ul>   
+      </div>
+    </div>
+    <div id='main_container'>
+      <div class="std_textbox" id='output_container'>
+        <script> var jobName = "{{jobName}}"; </script>
+        <div id="output_options_text">
+          <h2>Run Successful</h2>
+          <h4>Save this page to return to results</h4>
+          <div id="output_options">
+            <form action="{{ url_for('download', jobName=jobName) }}" method="post">
+              <button class="non_graph_button" id="download_button" style="margin-bottom:10px;" type=submit>Download Full Results</button>
+            </form>
+            <form action="{{ url_for('download_top', jobName=jobName) }}" method="post">
+              <button class="non_graph_button" id="download_top_button" style="margin-bottom:10px;" type=submit>Download Top Candidate Results</button>
+            </form>
+            <form action="{{ url_for('go_home') }}" method="post">
+              <button class="non_graph_button" id='submit_new_button' type="submit">Submit New</button>
+            </form>
+          </div> 
+          <div id="results_quick_guide">
+            <a id=guideToggle style="text-decoration:none;" href="#">Show Results Quick Guide</a>           
+            <div id="quick_guide_text">
+              <div class="quick_guide_1">
+                <h3>ProScan Output Summary</h3> 
+                <ul style="line-height:1.7; list-style-type:none; padding:0px 0px 0px 20px;">
+                  <li> <b>(Top Left)</b> All residues are displayed on a Ramachandran plot with the contour graph constructed from proline angle preferences defined by <a style="text-decoration:none;" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/prot.10286">Lovell et al.</a></li>
+                  <li> <b>(Top Right)</b> A 3d model of the input protein is displayed in cartoon format. Residues with proline ProteinMPNN probability >= 0.1 and preferable or acceptable Ramachandran angle classification are also represented with a ball and stick model</li>
+                  <li> <b>(Bottom)</b> A table summary of the ProScan output. The table includes Ramachandran classification, ProteinMPNN probability predictions, and potential disruptions of certain bonding interactions including hydrogen bonding ("H-bond"), disulfide bonds ("Disulfide"), and glycans ("Glycan"). The chain and ID of the other residue participating in the interaction or the bound glycan type are listed after the interaction type</li> 
+                </ul>
+              </div>
+              <div class="quick_guide_1">
+                <h3>Color Scheme (Same for All Output Sections)</h3>
+                <ul style="line-height:1.7; list-style-type:none; padding:0px 0px 0px 20px;">
+                  <li> <b>(Green)</b> Residues classified as highest confidence candidates for mutation to proline. These residues have preferable Ramachandran backbone angles for proline and a ProteinMPNN proline probability greater than or equal to 0.2</li>
+                  <li> <b>(Yellow)</b> Residues classified as medium confidence candidates for mutation to proline. These residues have preferable or acceptable Ramachandran backbone angle for proline and ProteinMPNN proline probability between 0.01 and 0.2</li>
+                  <li> <b>(Grey/Uncolored)</b> Residues predicted to be unsuitable candidates for mutation to proline. These residues either have questionable Ramachandran backbone angles or ProteinMPNN proline probability < 0.01 </li> 
+                  <li> <b>(Dark Blue)</b> Wild-type proline residues</li> 
+                </ul>
+              </div>
+            </div>
+          </div>
+          <script src="{{ url_for('static', filename='/js/toggleGuide.js') }}"></script> 
+        </div>
+        <div id="res_search">
+          <input type="text" id="inputRes" placeholder="A15 = Chain A Residue 15">
+            <!-- Options will be dynamically added here -->
+          </select>
+            <button class="non_graph_button" id="submitButton">Search Residue</button>
+            <button class="non_graph_button" id="clearButton">Reset View</button>
+            <p style="visibility:hidden;" id="res_not_found">Residue not found! Please enter chain followed by residue ID with no space</p>
+        </div>
+        <!-- Plotly scatter plot container -->   
+        <div id="plot_container">
+          <div id="plotly_container">
+          <div class="results_help_link_container">
+            <a style="text-decoration:none;" href="{{ url_for('help') }}#help_info1c" target="_blank">Click Here for Plot Help</a> 
+          </div>            
+            <div id="pro_plot">
+        	    <script src="{{url_for('static',filename='js/plotly_plot.js')}}"></script>  
+                <script>         
+                  var plotData = {{plotData|tojson|safe}};
+                  grab_plotly(plotData);         
+                </script>
+            </div>
+          </div>
+          <!-- Display 3D representation of PDB --> 
+          <div id="ngl_container">
+            <div class="results_help_link_container">
+              <a style="text-decoration:none;" href="{{ url_for('help') }}#viewer_help_image" target="_blank">Click Here for Model Viewer Help</a> 
+            </div>  
+            <div id="ngl_viewer"">
+              <button class="nglButtons" id="recenterButton">Recenter</button>
+              <script src="{{ url_for('static', filename='/js/protein_viewer.js') }}"></script>
+            </div>
+          </div>
+        </div>
+        <!-- Display results table-->
+        <div id="full_table_container">
+          <div class="results_help_link_container">
+            <a style="text-decoration:none;" href="{{ url_for('help') }}#help_info1d" target="_blank">Click Here for Results Table Help</a> 
+          </div>
+        <div id="table-container">
+          <div id="table_buttons">
+            <button class="non_graph_button" id="display_all" data-script-path="{{ url_for('static', filename='/js/display_table_all.js') }}">Display All</button>
+            <button class="non_graph_button" id="display_top" data-script-path="{{ url_for('static', filename='/js/display_table_top.js') }}">Display Top</button>
+            <button class="non_graph_button" id="expand_table">Collapse Table</button>
+          </div> 
+          <div id="table_display"></div>
+        </div>
+      </div>
+      </div>  
+      <div id="main_footer">
+        <a style="text-decoration:none;" href="http://www.ibbr.umd.edu">
+          <img style="width:250px" class='footer_image' src="{{url_for('static', filename='/image/ibbr_logo.png')}}" />
+        </a>
+        <a style="text-decoration:none;" href="http://www.umd.edu">
+          <img style="width:220px" class='footer_image' src="{{url_for('static', filename='/image/UMD_Logo-white.png')}}" />
+        </a>
+      </div>                     
+    </div> <!-- Close main_container--> 
+    <script src="{{ url_for('static', filename='/js/table_changer.js') }}"></script>
+    <script src="{{ url_for('static', filename='/js/table_expander.js') }}"></script>
+  </body>
+</html>

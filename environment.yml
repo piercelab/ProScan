@@ -1,0 +1,17 @@
+name: wsgi # DO NOT CHANGE or site will not function
+channels:
+# If instructions say 'conda install' with a -c option, 
+# add the channel name here.
+- defaults
+- conda-forge
+- bioconda
+- pytorch
+dependencies:
+- flask # Packages without a version will update if possible.
+- python==3.10 # You can also specify a version or range.
+- biopython
+- pytorch
+- torchvision
+- torchaudio
+- cpuonly
+- plotly

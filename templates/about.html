@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title> ProScan Info Page </title>
+    <link rel="stylesheet" href="../static/css/main.css">
+  </head>
+   
+  <body>
+    
+    
+      <div class="main_header">
+        <div id="header_title">
+          <a class="title" href=/>ProScan</a>
+          <a id="subtitle" href=/>Structure-Based Proline Design Tool</a>
+        </div>
+        <div class="options_header">     
+          <ul>
+            <li class="thlist"><a href=/>Home</a></li>
+            <li class="thlist"><a href="{{ url_for('about') }}">About</a></li>
+            <li class="thlist"><a href="{{ url_for('help') }}">Help</a></li>
+            <li class="thlist"><a href="https://piercelab.ibbr.umd.edu">Lab Home</a></li>
+	        </ul>   
+	      </div>
+	    </div>
+    <div id="main_container">
+      <div id=about_info>     
+        <h3><strong>About ProScan</strong></h3>
+        <p>ProScan is a web server that provides guidance in identifying favorable proline substitutions given a protein structure.
+          It is is developed by the <a style="text-decoration: none;" href="https://piercelab.ibbr.umd.edu/">Pierce Lab</a> at 
+          the <a style="text-decoration: none;" href="https://www.ibbr.umd.edu/home"> Institute for Biocience and Biotechnology Research</a>
+          and the University of Maryland. ProScan is free to all users and there is no login requirement. ProScan does not use any tracking cookies
+        </p>
+        <br>
+        <p>Targeted proline substitutions has proven to be an effective strategy in
+          protein engineering. Due to the cyclic nature of its side chain, proline has a uniquely rigid structure that can stabilize a specific protein conformation and/or modulate protein dynamics. Examples of successful proline designs include:<ul>
+          <li>The key proline substitution in the <a style="text-decoration: none;" href="https://pubmed.ncbi.nlm.nih.gov/24068931/">"SOSIP" HIV envelope glycoprotein design</a></li>
+          <li>The two proline substitutions to stabilize the SARS-CoV-2 prefusion spike, which has enabled <a style="text-decoration: none;" href="https://pubmed.ncbi.nlm.nih.gov/32075877/">structural characterization</a> and has been used in multiple vaccines</li>
+          <li>A proline substitution to stabilize a key epitope in HCV E2 <a style="text-decoration: none;" href="https://pubmed.ncbi.nlm.nih.gov/32878891/">which improved antigenicity and immunogenicity</a></li>
+          </ul>
+          </p>
+          
+        <p>ProScan was created to help guide protein design efforts that incorporate proline mutations by utilizing a mix of physics-based criteria 
+          and machine learning approaches to predict favorable proline substitutions. ProScan outputs these predictions along with structural information to help 
+          select the best potential residues for mutation to proline with an average runtime of under two minutes.
+        </p>
+        <br>
+        <p> Resources used by ProScan include <a style="text-decoration: none;" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4383885/">DSSP</a>, 
+          <a style="text-decoration: none;" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9997061/">ProteinMPNN</a>,
+          <a style="text-decoration: none;" href="https://plotly.com/">Plotly</a>, and
+          <a style="text-decoration: none;" href="http://nglviewer.org/#page-top">NGL Viewer</a>
+        </p>
+        <br>
+        <p>For questions regarding the server please contact Nathaniel Felbinger at nfelbing@umd.edu</p>
+      </div>
+      <div id="main_footer">
+        <a style="text-decoration:none;" href="http://www.ibbr.umd.edu">
+          <img style="width:250px" class='footer_image' src="{{url_for('static', filename='/image/ibbr_logo.png')}}" />
+        </a>
+        <a style="text-decoration:none;" href="http://www.umd.edu">
+          <img style="width:220px" class='footer_image' src="{{url_for('static', filename='/image/UMD_Logo-white.png')}}" />
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

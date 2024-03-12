@@ -1,0 +1,30 @@
+Rosetta Input/Output Paths (order essential)
+path is first '/', './',or  '../' to next whitespace, must end with '/'
+INPUT PATHS:
+pdb1	                        ./
+pdb2                            ./
+alternate data files            ./
+fragments                       ./
+structure dssp,ssa (dat,jones)  ./
+sequence fasta,dat,jones        ./
+constraints                     ./
+starting structure              ./
+data files                      //www/cgi-bin/ProScan/rosetta2.3/rosetta_database/
+OUTPUT PATHS:
+movie                           ./
+pdb path                        ./
+score                           ./
+status                          ./
+user                            ./
+FRAGMENTS: (use '*****' in place of pdb name and chain)
+2                                      number of valid fragment files
+3                                      frag file 1 size
+aa*****03_05.???_v1_3                               name
+9                                      frag file 2 size
+aa*****09_05.???_v1_3                               name
+-------------------------------------------------------------------------
+CVS information:
+$Revision: 20460 $
+$Date: 2008-02-18 23:02:35 -0500 (Mon, 18 Feb 2008) $
+$Author: possu $
+-------------------------------------------------------------------------

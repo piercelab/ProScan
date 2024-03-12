@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <title>Running_ProteinMPNN</title>    
+     <link rel="stylesheet" href="../static/css/main.css">
+   </head>
+   <body>   
+      <div class="main_header">
+        <div id="header_title">
+          <a class="title" href=/>ProScan</a>
+          <a id="subtitle" href=/>Structure-Based Proline Design Tool</a>
+        </div>
+      <div class="options_header">     
+          <ul>
+            <li class="thlist"><a href=/>Home</a></li>
+            <li class="thlist"><a href="{{ url_for('about') }}">About</a></li>
+            <li class="thlist"><a href="{{ url_for('help') }}">Help</a></li>
+            <li class="thlist"><a href="https://piercelab.ibbr.umd.edu">Lab Home</a></li>
+          </ul>   
+        </div>
+      </div>
+    <div id='main_container'>
+      <div class='std_textbox load_info'>
+      Done! Preparing Visualization <br>
+      <img id="loading_gif" src="{{url_for('static', filename='/image/loading-buffering.gif')}}" height="30" width="30"/>
+      </div>
+      <script>
+        setTimeout(function() {
+          var jobName = "{{jobName}}";
+          window.location.replace('/loading_complete/'+ jobName);
+        }, 10);
+      </script>
+      <div style="margin-top:600px;" id="main_footer">
+        <a style="text-decoration:none;" href="http://www.ibbr.umd.edu">
+          <img style="width:250px" class='footer_image' src="{{url_for('static', filename='/image/ibbr_logo.png')}}" />
+        </a>
+        <a style="text-decoration:none;" href="http://www.umd.edu">
+          <img style="width:220px" class='footer_image' src="{{url_for('static', filename='/image/UMD_Logo-white.png')}}" />
+        </a>
+      </div>
+    </div>
+    </body>
+</html>

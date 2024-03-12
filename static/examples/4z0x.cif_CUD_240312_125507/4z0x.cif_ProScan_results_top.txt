@@ -1,0 +1,2 @@
+Residue	ID	Chain	Phi	Psi	Sec_Struct	ProteinMPNN_Prob	Pro_Angle	Pre-Pro_Angle	DDG_Pred	Notes
+HIS	445	C	-66.417	147.011	No_Sec	0.6905	Preferable	Preferable	-1.0	-

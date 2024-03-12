@@ -1,0 +1,7 @@
+C	0439	H-bond_C0435
+C	0440	H-bond_C0436
+C	0440	H-bond_C0437
+C	0441	H-bond_C0437
+C	0441	H-bond_C0438
+C	0442	H-bond_C0439
+C	0443	H-bond_C0439
